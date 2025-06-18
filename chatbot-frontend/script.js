@@ -15,11 +15,12 @@ document.addEventListener("DOMContentLoaded", () => {
         appendMessage(message, "user-message");
         userInput.value = "";
         
-        fetch("http://127.0.0.1:5001/chat", {  // Update URL if using Node.js backend
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ message: message })
-        })
+        fetch('https://https://ai-agents-academy.onrender.com/chat', {
+            method: 'POST',
+            body: JSON.stringify({ message: userInput }),
+            headers: { 'Content-Type': 'application/json' }
+          })
+
         .then(response => response.json())
         .then(data => appendMessage(data.response, "bot-message"))
         .catch(error => console.error("Error:", error));
