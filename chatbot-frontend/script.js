@@ -15,12 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
         appendMessage(message, "user-message");
         userInput.value = "";
         
-        fetch('https://ai-agents-academy.onrender.com/', {
+        fetch('https://ai-agents-academy.onrender.com/chat', {
             method: 'POST',
-            body: JSON.stringify({ message: userInput }),
-            headers: { 'Content-Type': 'application/json' }
-          })
-
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: message })
+        })
         .then(response => response.json())
         .then(data => appendMessage(data.response, "bot-message"))
         .catch(error => console.error("Error:", error));
