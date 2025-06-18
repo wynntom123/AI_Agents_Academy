@@ -3,13 +3,30 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Allow requests only from your Netlify frontend
+# This allows CORS only from your frontend Netlify domain
 CORS(app, resources={r"/*": {"origins": "https://whyhi.netlify.app"}})
+
+@app.route("/chat", methods=["POST", "OPTIONS"])
+def chat():
+    if request.method == "OPTIONS":
+        # Handle preflight request directly
+        return '', 200
+
+    data = request.get_json()
+    user_input = data.get("message")
+
+    # Replace this with your OpenAI API call logic
+    response = f"You said: {user_input}"
+
+    return jsonify({"response": response})
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 load_dotenv()  # Load API key from .env file
 client = OpenAI()  # Will automatically use OPENAI_API_KEY from environment
