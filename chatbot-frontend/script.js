@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         userInput.value = "";
     
         appendMessage("Typing...", "bot-message");
-        fetch("https://your-backend-url.com/chat", {  
+        fetch("https://ai-agents-academy.onrender.com/chat", {  
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message: message })
