@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
         appendMessage(message, "user-message");
         userInput.value = "";
         
-        fetch('https://https://ai-agents-academy.onrender.com/chat', {
+        fetch('https://https://ai-agents-academy.onrender.com/', {
             method: 'POST',
             body: JSON.stringify({ message: userInput }),
             headers: { 'Content-Type': 'application/json' }
