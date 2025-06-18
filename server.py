@@ -3,6 +3,13 @@ from openai import OpenAI
 import os
 from dotenv import load_dotenv
 from flask_cors import CORS
+from flask import Flask
+from flask_cors import CORS
+
+app = Flask(__name__)
+
+# Allow requests only from your Netlify frontend
+CORS(app, resources={r"/*": {"origins": "https://whyhi.netlify.app"}})
 
 load_dotenv()  # Load API key from .env file
 client = OpenAI()  # Will automatically use OPENAI_API_KEY from environment
